@@ -1,3 +1,13 @@
+<?php
+
+    spl_autoload_register(function($class){
+        require "pages/classes/". $class . ".class.php";
+    });
+
+    $dbcon = new dbcon();
+    $con = new continent();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +58,10 @@
     </div>
   </div>  
   <div class="container flex flex-wrap justify-center items-center gap-5 mx-auto max-w-6xl min-h-screen py-5 relative" id="container">
-
+      <?php 
+        $continents = new continent();
+        $continents->Afficher();
+      ?>
   </div>
 </body>
 </html>
