@@ -5,9 +5,9 @@
     });
 
     class continent {
-        protected $id_continent;
-        protected $nom;
-        private $nombrePays;
+        public $id_continent;
+        public $nom;
+        public $nombrePays;
 
         // verifier l'existance d'un continent ou ses pays
         private function RECHCONTINENT($id){

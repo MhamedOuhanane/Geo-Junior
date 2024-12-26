@@ -2,7 +2,7 @@
 
     spl_autoload_register(function($class){
         require "pages/classes/". $class . ".class.php";
-    });
+    })
 
 ?>
 
@@ -57,9 +57,29 @@
   </div>  
   <div class="container flex flex-wrap justify-center items-center gap-5 mx-auto max-w-6xl min-h-screen py-5 relative" id="container">
       <?php 
-        $continents = new continent();
+        $dbcon = new dbcon();
+
         if (empty($_GET)) {
+
+          $continents = new continent();
           $continents->AfficherUser();
+
+        } else if (isset($_GET['FiltreP'])) {
+
+          $pays = new pays();
+
+          $pays->id_continent = $dbcon->selectWhere('continent', 'name', $_GET['FiltreP'], 'string')[0]['id_continent'];
+          $arraypays = $dbcon->selectWhere('pays', 'id_continent', $pays->id_continent, 'int');
+          
+          foreach($arraypays as $contry){
+            $pays->id_pays = $contry['id_pays'];
+            $pays->nom = $contry['nom'];
+            $pays->population = $contry['population'];
+            $pays->langues = $contry['langues'];
+            $pays->AfficherUser();
+
+          }
+
         }
       ?>
   </div>
