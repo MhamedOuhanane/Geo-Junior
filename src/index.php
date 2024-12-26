@@ -4,8 +4,6 @@
         require "pages/classes/". $class . ".class.php";
     });
 
-    $dbcon = new dbcon();
-    $con = new continent();
 ?>
 
 <!DOCTYPE html>
