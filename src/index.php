@@ -60,7 +60,9 @@
   <div class="container flex flex-wrap justify-center items-center gap-5 mx-auto max-w-6xl min-h-screen py-5 relative" id="container">
       <?php 
         $continents = new continent();
-        $continents->Afficher();
+        if (empty($_GET)) {
+          $continents->AfficherUser();
+        }
       ?>
   </div>
 </body>
