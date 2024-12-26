@@ -10,7 +10,7 @@
         private $nombrePays;
 
         // verifier l'existance d'un continent ou ses pays
-        public function RECHCONTINENT($id){
+        private function RECHCONTINENT($id){
             $dbcon = new dbcon();
 
             $pays = $dbcon->selectWhere('pays', 'id_continent', $id, 'int');
