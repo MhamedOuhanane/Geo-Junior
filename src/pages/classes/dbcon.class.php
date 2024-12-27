@@ -85,7 +85,28 @@
             }
             $this->data = self::connect()->query($this->sql);
         }
-        
+        public function Update($table,$values,$conditionColumn,$conditionValue,$type){
+            $this->sql = "UPDATE $table SET ";
+            foreach($values as $index=>$value){
+                $this->sql .= $value["column"] . "=";
+                if($value["type"] == "int"){
+                    $this->sql .= $value["val"];
+                }else if($value["type"] == "string"){
+                    $this->sql .="'".$value["val"]."'";
+                }
+                if (isset($values[$index + 1])) {
+                    $this->sql .= ", ";
+                }
+            }
+
+            $this->sql .="WHERE $conditionColumn = ";
+            if($type == "int"){
+                $this->sql .= $conditionValue . ";";
+            }else if($type == "string"){
+                $this->sql .= "'".$conditionValue."';";
+            }
+            self::connect()->query($this->sql);
+        }
         
 
     }
