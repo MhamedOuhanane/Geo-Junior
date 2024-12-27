@@ -44,7 +44,7 @@ Une fois la partie **Back-End** finalisée, vous êtes encouragés à améliorer
    - [GitHub Repository](https://github.com/MhamedOuhanane/Geo-Junior.git)
 
 2. **Document PDF V1** :
-   - [docomment.pdf](path/to/docomment.pdf)  
+   - [docomment.pdf](Documents%20POO/POO.pdf)  
 
 3. **Lien de planification en Jira** :
    - [Jira Planification](https://mhamde.atlassian.net/jira/software/projects/GJ/boards/9?sprintStarted=true&atlOrigin=eyJpIjoiMzRmNDg0YjY0OTk5NDllZjlhY2I2ODRmODkwMTI3N2IiLCJwIjoiaiJ9)
