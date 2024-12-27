@@ -10,12 +10,13 @@ class roles{
         if (isset($_SESSION)) {
             $this->nameRole = $_SESSION['role'];
             if ($this->nameRole == 'User') {
-                header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src');
+                header('Location: src/');
             } else if ($this->nameRole == 'Admine') {
-                header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/adminPages/adminDashboard.php');
+                header('Location: src/pages/adminPages/adminDashboard.php');
             }
         } else {
-            header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/authentification/login.php');
+            header('Location: src/pages/authentification/login.php');
+            
         }
     }
 

@@ -69,13 +69,13 @@
                 
                 if ($dbcon->Insert('user', $utilisateur)) {
                     $message = "Le compts a ete crée avec succés.";
-                    header('Location: login.php?message='.$message);
+                    header('Location: ../login.php?message='.$message);
                     exit;
                 }
                 
             } else {
                 $erreur = "Ce compts est déjat éxicte .";
-                header('Location: register.php?erreur='.$erreur);
+                header('Location: ../register.php?erreur='.$erreur);
                 exit;
             }
 
