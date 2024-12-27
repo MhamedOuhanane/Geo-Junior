@@ -19,14 +19,25 @@
                 return 0;
             }
         }
-        
+
         public function selectAll($table){
             $this->sql = "SELECT * FROM $table";
             $this->data = self::connect()->query($this->sql);
             $this->data = $this->data->fetchAll(PDO::FETCH_ASSOC);
             return $this->data;
         }
-
+        
+        public function selectWhere(string $table,$columnName,$value,$valueType){
+            $this->sql = "SELECT * FROM $table WHERE $columnName = ";
+            if($valueType == "int"){
+                $this->sql .= $value;
+            }else if($valueType == 'string'){
+                $this->sql .= "'".$value."'";
+            }
+            $this->data = self::connect()->query($this->sql);
+            $this->data = $this->data->fetchAll(PDO::FETCH_ASSOC);
+            return $this->data;
+        }
         
 
 
