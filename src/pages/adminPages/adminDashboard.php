@@ -84,11 +84,11 @@
     if(isset($_GET["id_continent"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Pays</span>';
     else if(isset($_GET["id_pays"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Villes</span>';
     else echo '<span class="font-bold text-3xl mx-5 mt-4">Continents</span>';
-     
+    
     spl_autoload_register(function($class){
       require "../classes/". $class . ".class.php";
     });
-     $dbcon = new dbcon();
+    $dbcon = new dbcon();
 
     ?>
 

@@ -57,7 +57,7 @@
             $this->data->execute();
         }
         public function deleteWhere($table,$columnName,$value,$valueType){
-            $this->sql = "DELETE * FROM $table WHERE $columnName = ";
+            $this->sql = "DELETE FROM $table WHERE $columnName = ";
             if($valueType == "int"){
                 $this->sql .= $value;
             }else if($valueType == 'string'){
