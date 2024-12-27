@@ -1,7 +1,4 @@
 <?php
-    if(!isset($_GET["id_ville"])){
-        header("location: ../../../");
-    }
     spl_autoload_register(function($class){
         require "../../classes/" .$class . ".class.php";
     });
@@ -25,8 +22,9 @@
     <title>edit city Form</title>
 </head>
 <body class="flex justify-center items-center min-h-screen bg-slate-500">
-    <form class="space-y-4 font-[sans-serif] max-w-md mx-auto bg-slate-300 py-10 px-10" action="" method="POST">
+    <form class="space-y-4 font-[sans-serif] max-w-md mx-auto bg-slate-300 py-10 px-10" action="../processors/edit.php" method="POST">
         <span class="font-bold text-xl">Edit City</span>
+        <input type="text" class="hidden" name="id" value="<?php echo $id; ?>">
         <input type="text" placeholder="name" class="px-4 py-3 bg-gray-100 w-full text-sm outline-none border-b-2 border-blue-500 rounded" value="<?= $ville->nom ?>" name="nom" required/>
         <input type="text" placeholder="description" class="px-4 py-3 bg-gray-100 w-full text-sm outline-none border-b-2 border-blue-500 rounded" value="<?=$ville->description ?>" name="description" required/>
         <div class="flex justify-center items-center text-blue-500 gap-8">

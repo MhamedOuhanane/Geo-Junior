@@ -66,26 +66,35 @@
             $this->data = self::connect()->query($this->sql);
         }
         public function Update($table,$values,$conditionColumn,$conditionValue,$type){
-            $this->sql = "UPDATE $table SET ";
-            foreach($values as $index=>$value){
-                $this->sql .= $value["column"] . "=";
-                if($value["type"] == "int"){
-                    $this->sql .= $value["val"];
-                }else if($value["type"] == "string"){
-                    $this->sql .="'".$value["val"]."'";
-                }
-                if (isset($values[$index + 1])) {
-                    $this->sql .= ", ";
-                }
-            }
+            $columns = "";
 
-            $this->sql .="WHERE $conditionColumn = ";
-            if($type == "int"){
-                $this->sql .= $conditionValue . ";";
-            }else if($type == "string"){
-                $this->sql .= "'".$conditionValue."';";
+            foreach ($values as $key => $value) {
+                $columns .= $key . " = :" . $key . ", ";
             }
-            self::connect()->query($this->sql);
+            
+    
+            $columns = rtrim($columns, ", ");
+            
+           
+            $this->sql = "UPDATE $table SET $columns WHERE $conditionColumn = :conditionValue";
+            
+            $stmt = self::connect()->prepare($this->sql);
+            
+            foreach ($values as $key => $value) {
+                $typeParam = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+                $stmt->bindValue(":" . $key, $value, $typeParam);
+            }
+            var_dump($stmt);
+            $conditionParam = ($type == "int") ? PDO::PARAM_INT : PDO::PARAM_STR;
+            $stmt->bindValue(":conditionValue", $conditionValue, $conditionParam);
+            $stmt->execute();
+            
+        }
+        public function selectCount($table){
+            $this->sql = "SELECT COUNT(*) FROM $table";
+            $this->data = self::connect()->query($this->sql);
+            $this->data = $this->data->fetch(PDO::FETCH_ASSOC);
+            return $this->data["COUNT(*)"];
         }
     }
 ?>

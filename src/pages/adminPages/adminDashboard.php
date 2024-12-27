@@ -3,6 +3,7 @@
     spl_autoload_register(function($class){
         require "../classes/". $class . ".class.php";
     });
+    $dbcon = new dbcon();
 
     $user = new user();
     session_start();
@@ -44,28 +45,28 @@
 
     <div class="mt-4">
         <div class="flex flex-wrap -mx-6">
-            <a class="w-full px-6 sm:w-1/2 xl:w-1/3" href="admin.php">
+            <a class="w-full px-6 sm:w-1/2 xl:w-1/3" href="adminDashboard.php">
                 <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
                     <div class="py-3 px-4 rounded-full bg-indigo-600 bg-opacity-75">
                         <i class="fa-solid fa-earth-africa text-white text-2xl"></i>
                     </div>
                     <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700">100</h4>
+                        <h4 class="text-2xl font-semibold text-gray-700"><?php echo $dbcon->selectCount("continent"); ?></h4>
                         <div class="text-gray-500">Total continents</div>
                     </div>
                 </div>
             </a>
-            <a class="w-full px-6 sm:w-1/2 xl:w-1/3" href="admin.php">
+            <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
                 <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
                     <div class="py-3 px-4 rounded-full bg-indigo-600 bg-opacity-75">
                         <i class="fa-solid fa-flag text-white text-2xl"></i>
                     </div>
                     <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700">100</h4>
+                        <h4 class="text-2xl font-semibold text-gray-700"><?php echo $dbcon->selectCount("pays"); ?></h4>
                         <div class="text-gray-500">Total countries</div>
                     </div>
                 </div>
-            </a>
+            </div>
 
             <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
                 <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
@@ -73,7 +74,7 @@
                         <i class="fa-solid fa-city text-2xl text-white"></i>
                     </div>
                     <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700">200</h4>
+                        <h4 class="text-2xl font-semibold text-gray-700"><?php echo $dbcon->selectCount("ville"); ?></h4>
                         <div class="text-gray-500">Total cities</div>
                     </div>
                 </div>
@@ -84,11 +85,6 @@
     if(isset($_GET["id_continent"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Pays</span>';
     else if(isset($_GET["id_pays"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Villes</span>';
     else echo '<span class="font-bold text-3xl mx-5 mt-4">Continents</span>';
-    
-    spl_autoload_register(function($class){
-      require "../classes/". $class . ".class.php";
-    });
-    $dbcon = new dbcon();
 
     ?>
 
@@ -105,7 +101,7 @@
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">Name</th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">population</th>
                         <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">langues</th>
-                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-2xl text-end"><a href="formPages/addCountryForm.php">+</a></th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-2xl text-end"><a href="formPages/addCountryForm.php?id_continent='.$_GET["id_continent"].'">+</a></th>
                     </tr>
                     </thead>
                     <tbody class="bg-white">';
@@ -120,11 +116,12 @@
               }
               
             }else if(isset($_GET["id_pays"])){
+                
                   echo'<thead>
                   <tr class="bg-gray-100 ">
-                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">Name</th>
                       <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">type</th>
-                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-2xl text-end"><a href="formPages/addcityForm.php">+</a></th>
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-2xl text-end"><a href="formPages/addCityForm.php?id_pays='.$_GET["id_pays"].'">+</a></th>
                   </tr>
                   </thead>
                   <tbody class="bg-white">';
