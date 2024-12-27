@@ -20,6 +20,12 @@
             }
         }
         
+        public function selectAll($table){
+            $this->sql = "SELECT * FROM $table";
+            $this->data = self::connect()->query($this->sql);
+            $this->data = $this->data->fetchAll(PDO::FETCH_ASSOC);
+            return $this->data;
+        }
 
         
 
