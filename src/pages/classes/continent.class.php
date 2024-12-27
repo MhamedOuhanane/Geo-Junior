@@ -15,7 +15,7 @@
             
             if ($dbcon->selectWhere('continent', 'name', $name, 'string') != NULL){
                 $conti = $dbcon->selectWhere('continent', 'name', $name, 'string');
-                $this->id_continent = $conti['id_continent'];
+                $this->id_continent = $conti[0]['id_continent'];
             } else {
                 $this->id_continent = 0;
             }
@@ -50,7 +50,7 @@
             ];
             
             foreach ($continents as $continent => $image) {
-                echo '<a class="w-[34%] h-[40%] ' . $this->RECHCONTINENT($continent) . '" href="index.php?FiltreP=' . urlencode($continent) . '#container">
+                echo '<a class="w-[30%] h-[40%] my-6 ' . $this->RECHCONTINENT($continent) . '" href="index.php?FiltreP=' . urlencode($continent) . '#container">
                             <img class="w-full h-full" src="assets/images/' . $image . '" alt="Map ' . $continent . '">
                         </a>';
             }

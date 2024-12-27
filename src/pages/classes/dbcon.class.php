@@ -37,7 +37,7 @@
                 $this->sql .= "'".$value."'";
             }
             $this->data = self::connect()->query($this->sql);
-            $this->data = $this->data->fetch(PDO::FETCH_ASSOC);
+            $this->data = $this->data->fetchAll(PDO::FETCH_ASSOC);
             return $this->data;
         }
 

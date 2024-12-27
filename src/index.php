@@ -52,6 +52,9 @@
         </p>
         <div class="flex flex-col items-center gap-4 lg:flex-row">
           <a class="flex items-center py-4 text-sm font-bold text-white px-7 bg-blue-500 hover:bg-black focus:ring-4 focus:ring-blue-100 transition duration-300 rounded-xl" href="#container">Get started now</a>
+          <?php if (empty($_GET)) { ?>
+            <a class="flex items-center py-4 text-sm font-bold text-white px-7 bg-blue-500 hover:bg-black focus:ring-4 focus:ring-blue-100 transition duration-300 rounded-xl" href="#container">Get started now</a>
+          <?php } ?>
         </div>
       </div>
       <div class="items-center justify-end hidden col-span-1 md:flex">
@@ -75,7 +78,7 @@
           $arraycontinent = $dbcon->selectWhere('continent', 'name', $_GET['FiltreP'], 'string');
 
           if ($arraycontinent != NULL) {
-            $pays->id_continent = $arraycontinent['id_continent'];
+            $pays->id_continent = $arraycontinent[0]['id_continent'];
           
             $arraypays = $dbcon->selectWhere('pays', 'id_continent', $pays->id_continent, 'int');
             

@@ -20,7 +20,7 @@
 
             $roles = $dbcon->selectWhere("role", 'name', $rolename, 'string');
             if ($roles != null) {
-                $this->id_role = $roles['id_role'];
+                $this->id_role = $roles[0]['id_role'];
             } else {
                 $this->id_role = 0;
             }
@@ -34,7 +34,7 @@
             $dbcon = new dbcon();
             $role = $dbcon->selectWhere('role', 'id_role', $this->id_role, 'int');
             if ($role != NULL) {
-                return $this->nameRole = $role['name'];
+                return $this->nameRole = $role[0]['name'];
             }
         }
 
@@ -43,9 +43,9 @@
             $realpath = realpath(__DIR__.'/../src');
             $users = $dbcon->selectWhere('user', 'Email', $this->email, 'string');
             if ($users != NULL) {
-                if (password_verify($this->password, $users['Password'])) {
+                if (password_verify($this->password, $users[0]['Password'])) {
                     session_start();
-                    $this->id_role = $users['id_role'];
+                    $this->id_role = $users[0]['id_role'];
                     $_SESSION['id_user'] = $this->id_user;
                     $_SESSION['role'] = $this->userRole();
                     $this->Authentification(true, true, true);
