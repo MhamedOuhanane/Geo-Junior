@@ -35,7 +35,7 @@
         function AfficherUser()
         {
             
-            echo    '<a class="w-[10rem]'. $this->RECHVILLE() .'" href= "géographie.php?FiltreV='. htmlspecialchars($this->nom) .'">
+            echo    '<a class="'. $this->RECHVILLE() .'" href= "index.php?FiltreV='. htmlspecialchars($this->nom) .'#container">
                     <div class="bg-green-100 bg-opacity-60 rounded-sm w-[10rem] h-[11rem] md:w-[12rem] md:h-[13.5rem] flex flex-col items-center place-content-center p-2">
                         <img class="w-[60%]" src =' . $this->FILTRENAME($this->nom) . ' alt="Logo de Maroc">
                         <span class="md:text-[2vw] text-center">' . htmlspecialchars($this->nom) . '</span>

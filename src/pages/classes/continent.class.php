@@ -10,10 +10,17 @@
         public $nombrePays;
 
         // verifier l'existance d'un continent ou ses pays
-        private function RECHCONTINENT($id){
+        private function RECHCONTINENT($name){
             $dbcon = new dbcon();
+            
+            if ($dbcon->selectWhere('continent', 'name', $name, 'string') != NULL){
+                $conti = $dbcon->selectWhere('continent', 'name', $name, 'string');
+                $this->id_continent = $conti[0]['id_continent'];
+            } else {
+                $this->id_continent = 0;
+            }
 
-            $pays = $dbcon->selectWhere('pays', 'id_continent', $id, 'int');
+            $pays = $dbcon->selectWhere('pays', 'id_continent', $this->id_continent, 'int');
             $this->nombrePays = count($pays);
 
             if ($pays == NULL) {
@@ -21,53 +28,35 @@
             } else {
                 
                 if ($this->nombrePays == 0) {
-                    echo 'pointer-events-none';
+                    return 'pointer-events-none';
                 } else {
-                    echo 'hover:scale-110';
+                    return 'hover:scale-110';
                 };
             };
         }
 
-        // return id d'un continent dans database s'il existe
-        public function IdConti($name){
-            $dbcon = new dbcon();
-            if ($dbcon->selectWhere('continent', 'name', $name, 'string') != NULL){
-                $conti = $dbcon->selectWhere('continent', 'name', $name, 'string');
-                return $conti[0]['id_continent'];
-            } else {
-                return 0;
-            }
-        }
-
         // afficher les continents
         public function AfficherUser(){
+            echo '<div id="Continents" class="w-full h-full flex flex-wrap justify-evenly place-content-center ">';
+    
+            $continents = [
+                'North America' => 'NA-Map.png',
+                'Europe' => 'Europe-Map.png',
+                'Asia' => 'Asia-Map.png',
+                'South America' => 'SA-Map.png',
+                'Africa' => 'Africa-Map.png',
+                'Oceania' => 'Oceania-Map.png'
+            ];
             
-            echo '<div id="Continents" class="w-full h-full flex flex-wrap justify-evenly place-content-center ">
-                    <a class="w-[34%] h-[40%] '. $this->RECHCONTINENT($this->IdConti('North Amirica')) .'" href="index.php?FiltreP=North+Amirica">    
-                        <img class="w-full h-full" src="src/assets/images/NA-Map.png" alt="Map NA">
-                    </a>
-
-                    <a class="w-[20%] h-[30%] mt-4 '. $this->RECHCONTINENT($this->IdConti('Europe')) .'" href="index.php?FiltreP=Europe">
-                        <img class="w-full h-full" src="src/assets/images/Europe-Map.png" alt="Map Europe">
-                    </a>
-
-                    <a class="w-[38%] h-[40%] '. $this->RECHCONTINENT($this->IdConti('Asia')) .'" href="index.php?FiltreP=Asia">
-                        <img class="w-full h-full" src="src/assets/images/Asia-Map.png" alt="Map Asia">
-                    </a>
-
-                    <a class="w-[20%] h-[40%] '. $this->RECHCONTINENT($this->IdConti('South Amirica')) .'" href="index.php?FiltreP=South+Amirica">
-                        <img class="w-full h-full" src="src/assets/images/SA-Map.png" alt="Map SA">
-                    </a>
-
-                    <a class="w-[30%] h-[45%] '. $this->RECHCONTINENT($this->IdConti('Africa')) .'" href="index.php?FiltreP=Africa">
-                        <img class="w-full h-full" src="src/assets/images/Africa-Map.png" alt="Map Africa">
-                    </a>
-
-                    <a class="w-[15%] h-[20%] '. $this->RECHCONTINENT($this->IdConti('Oceania')) .'" href="index.php?FiltreP=Oceania">
-                        <img class="w-full h-full" src="src/assets/images/Oceania-Map.png" alt="Map Oceania">
-                    </a>
-                </div>';
-        } 
-    }
+            foreach ($continents as $continent => $image) {
+                echo '<a class="w-[34%] h-[40%] ' . $this->RECHCONTINENT($continent) . '" href="index.php?FiltreP=' . urlencode($continent) . '#container">
+                            <img class="w-full h-full" src="assets/images/' . $image . '" alt="Map ' . $continent . '">
+                        </a>';
+            }
+            
+            echo '</div>';
+        }
+    } 
+    
 
 ?>
