@@ -1,3 +1,11 @@
+<?php
+
+    spl_autoload_register(function($class){
+        require "pages/classes/". $class . ".class.php";
+    })
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +17,7 @@
     <title>GEO JUNIOR</title>
 </head>
 <body>
-  <div class="container flex flex-col mx-auto max-w-6xl h-screen">
+  <div class="container flex flex-col mx-auto max-w-6xl h-screen ">
     <div class="relative flex flex-wrap items-center justify-between w-[90%] lg:w-full bg-white group py-7 shrink-0 mx-auto">
       <div>
         <a href="#" class="text-3xl font-bold">GEO JUNIOR</a>
@@ -48,7 +56,58 @@
     </div>
   </div>  
   <div class="container flex flex-wrap justify-center items-center gap-5 mx-auto max-w-6xl min-h-screen py-5 relative" id="container">
+      <?php 
+        $dbcon = new dbcon();
 
+        if (empty($_GET)) {
+
+          $continents = new continent();
+          $continents->AfficherUser();
+
+        } else if (isset($_GET['FiltreP'])) {
+
+          $pays = new pays();
+
+          $arraycontinent = $dbcon->selectWhere('continent', 'name', $_GET['FiltreP'], 'string');
+
+          if ($arraycontinent != NULL) {
+            $pays->id_continent = $arraycontinent[0]['id_continent'];
+          
+            $arraypays = $dbcon->selectWhere('pays', 'id_continent', $pays->id_continent, 'int');
+            
+            foreach($arraypays as $contry){
+              $pays->id_pays = $contry['id_pays'];
+              $pays->nom = $contry['nom'];
+              $pays->population = $contry['population'];
+              $pays->langues = $contry['langues'];
+              $pays->id_continent = $contry['id_continent'];
+
+              $pays->AfficherUser();
+
+            }
+          }
+
+        } else if (isset($_GET['FiltreV'])) {
+          $ville = new ville();
+
+          $arraypays = $dbcon->selectWhere('pays', 'nom', $_GET['FiltreV'], 'string');
+          if ($arraypays != NULL) {
+            $ville->id_pays = $arraypays[0]['id_pays'];
+
+            $arrayVille = $dbcon->selectWhere('ville', 'id_pays', $ville->id_pays, 'int');
+
+            foreach($arrayVille as $city){
+              $ville->id_ville = $city['id_ville'];
+              $ville->nom = $city['nom'];
+              $ville->description = $city['description'];
+              $ville->type = $city['type'];
+              $ville->id_pays = $city['id_pays'];
+
+              $ville->AfficherUser();
+            }
+          }
+        }
+      ?>
   </div>
 </body>
 </html>
