@@ -22,7 +22,7 @@
     <title>edit country Form</title>
 </head>
 <body class="flex justify-center items-center min-h-screen bg-slate-500">
-    <form class="space-y-4 font-[sans-serif] max-w-md mx-auto bg-slate-300 py-10 px-10" action="../processors.php/edit.php" method="POST">
+    <form class="space-y-4 font-[sans-serif] max-w-md mx-auto bg-slate-300 py-10 px-10" action="../processors/edit.php" method="POST">
         <span class="font-bold text-xl">Edit country</span>
         <input type="text" class="hidden" name="id" value="<?php echo $id; ?>">
         <input type="text" placeholder="name" class="px-4 py-3 bg-gray-100 w-full text-sm outline-none border-b-2 border-blue-500 rounded" name="nom" value="<?php echo $pays->nom; ?>" required/>

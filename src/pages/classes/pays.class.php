@@ -81,7 +81,7 @@
                         <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-between">
                             <a href="?id_pays='.$this->id_pays.'" class="text-green-600 hover:text-indigo-900">View</a>
                             <a href="formPages/editCountryForm.php?id_country='.$this->id_pays.'" class="text-blue-600 hover:text-indigo-900">Edit</a>
-                            <a href="delete.php?id_country='.'" class="text-red-500 hover:text-indigo-900">delete</a>
+                            <a href="processors/remove.php?id_pays='.$this->id_pays.'" class="text-red-500 hover:text-indigo-900">delete</a>
                         </td>
                     </tr>';
             

@@ -57,7 +57,7 @@
             $this->data->execute();
         }
         public function deleteWhere($table,$columnName,$value,$valueType){
-            $this->sql = "DELETE * FROM $table WHERE $columnName = ";
+            $this->sql = "DELETE FROM $table WHERE $columnName = ";
             if($valueType == "int"){
                 $this->sql .= $value;
             }else if($valueType == 'string'){
@@ -89,6 +89,12 @@
             $stmt->bindValue(":conditionValue", $conditionValue, $conditionParam);
             $stmt->execute();
             
+        }
+        public function selectCount($table){
+            $this->sql = "SELECT COUNT(*) FROM $table";
+            $this->data = self::connect()->query($this->sql);
+            $this->data = $this->data->fetch(PDO::FETCH_ASSOC);
+            return $this->data["COUNT(*)"];
         }
     }
 ?>
