@@ -17,7 +17,7 @@
     <title>GEO JUNIOR</title>
 </head>
 <body>
-  <div class="container flex flex-col mx-auto max-w-6xl h-screen">
+  <div class="container flex flex-col mx-auto max-w-6xl h-screen ">
     <div class="relative flex flex-wrap items-center justify-between w-[90%] lg:w-full bg-white group py-7 shrink-0 mx-auto">
       <div>
         <a href="#" class="text-3xl font-bold">GEO JUNIOR</a>

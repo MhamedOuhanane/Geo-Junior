@@ -28,15 +28,16 @@
             } else {
                 
                 if ($this->nombrePays == 0) {
-                    return 'pointer-events-none';
+                    return "pointer-events-none";
                 } else {
-                    return 'hover:scale-110';
+                    return "hover:scale-110";
                 };
             };
         }
 
         // afficher les continents
         public function AfficherUser(){
+            
             echo '<div id="Continents" class="w-full h-full flex flex-wrap justify-evenly place-content-center ">';
     
             $continents = [
