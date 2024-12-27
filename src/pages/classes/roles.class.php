@@ -6,16 +6,21 @@ class roles{
     protected $id_role;
     protected $nameRole;
 
-    public function Authentification($condition){
+    public function Authentification($condition, $conditionUser){
         $realpath = realpath(__DIR__.'/../src');
-        if (isset($_SESSION)) {
-            session_start();
+        if (!empty($_SESSION)) {
+            
             $this->nameRole = $_SESSION['role'];
             if ($this->nameRole == 'User') {
-                header("Location: $realpath/Geo-Junior/src");
-                exit;
+                if ($conditionUser) {
+                    header("Location: $realpath/Geo-Junior/src");
+                    exit;
+                }
             } else if ($this->nameRole == 'Admine') {
-                header("Location: $realpath/Geo-Junior/src/pages/adminPages/adminDashboard.php");
+                if ($conditionUser) {
+                    header("Location: $realpath/Geo-Junior/src/pages/adminPages/adminDashboard.php");
+                    exit;
+                }
             }
         } else {
             if ($condition) {

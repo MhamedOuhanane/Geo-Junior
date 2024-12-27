@@ -1,3 +1,15 @@
+<?php
+
+    spl_autoload_register(function($class){
+        require "../classes/". $class . ".class.php";
+    });
+
+    $user = new user();
+    session_start();
+    $user->Authentification(true, false);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

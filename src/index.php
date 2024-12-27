@@ -5,8 +5,8 @@
     });
 
     $user = new user();
-
-    $user->Authentification(true);
+    session_start();
+    $user->Authentification(true, false);
 
 ?>
 
@@ -75,7 +75,7 @@
           $arraycontinent = $dbcon->selectWhere('continent', 'name', $_GET['FiltreP'], 'string');
 
           if ($arraycontinent != NULL) {
-            $pays->id_continent = $arraycontinent[0]['id_continent'];
+            $pays->id_continent = $arraycontinent['id_continent'];
           
             $arraypays = $dbcon->selectWhere('pays', 'id_continent', $pays->id_continent, 'int');
             
@@ -84,7 +84,6 @@
               $pays->nom = $contry['nom'];
               $pays->population = $contry['population'];
               $pays->langues = $contry['langues'];
-              $pays->id_continent = $contry['id_continent'];
 
               $pays->AfficherUser();
 
