@@ -35,6 +35,17 @@
             <a class="w-full px-6 sm:w-1/2 xl:w-1/3" href="admin.php">
                 <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
                     <div class="py-3 px-4 rounded-full bg-indigo-600 bg-opacity-75">
+                        <i class="fa-solid fa-earth-africa text-white text-2xl"></i>
+                    </div>
+                    <div class="mx-5">
+                        <h4 class="text-2xl font-semibold text-gray-700">100</h4>
+                        <div class="text-gray-500">Total continents</div>
+                    </div>
+                </div>
+            </a>
+            <a class="w-full px-6 sm:w-1/2 xl:w-1/3" href="admin.php">
+                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+                    <div class="py-3 px-4 rounded-full bg-indigo-600 bg-opacity-75">
                         <i class="fa-solid fa-flag text-white text-2xl"></i>
                     </div>
                     <div class="mx-5">
@@ -57,6 +68,17 @@
             </div>
         </div>
     </div>
+    <?php 
+    if(!isset($_GET["id_pays"]) && !isset($_GET["id_ville"]) && !isset($_GET["id_ville"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Continents</span>';
+    else if(isset($_GET["id_continent"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Pays</span>';
+    else if(isset($_GET["id_pays"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Villes</span>';
+    ?>
+    
+
+
+
+
+
 </div>
 
 
