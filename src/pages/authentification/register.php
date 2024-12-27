@@ -31,6 +31,38 @@
 </head>
 <body class="bg-white font-family-karla h-screen">
 
+    <?php
+        if (isset($_GET)) {
+            if (isset($_GET['message'])) {
+                echo '
+                <div id="SwitAlair" class="absolute w-[28rem] right-[-28rem] p-5 my-5 border-[1px] bg-green-200 bg-opacity-90 border-green-400 rounded-lg transition-all duration-700 ease-in-out">
+                    <span class="xbg-inherit ml-5 text-xl cursor-pointer" onclick="this.parentElement.remove();">&times;</span>
+                    <strong>Succès!</strong> ' . htmlspecialchars($_GET['message']) . '
+                </div>';
+            } else if (isset($_GET['erreur'])) {
+                echo '
+                        <div id="SwitAlair" class="absolute w-[28rem] right-[-28rem] p-5 my-5 border-[1px] bg-red-200 bg-opacity-90 border-red-400 rounded-lg transition-all duration-700 ease-in-out">
+                            <span class="xbg-inherit ml-5 text-xl cursor-pointer" onclick="this.parentElement.remove();">&times;</span>
+                            <strong>Erreur!</strong> ' . htmlspecialchars($_GET['erreur']) . '
+                        </div>';
+            }
+
+
+            echo    '<script>
+                        let messageElement = document.getElementById("SwitAlair");
+                        if (messageElement) {
+                            messageElement.style.right = "0"; 
+                        }
+                        
+                        setTimeout(function() {
+                            if (messageElement) {
+                                messageElement.remove();
+                            }
+                        }, 3000);
+                </script>';
+        }
+    ?>
+
     <div class="w-full flex flex-wrap">
 
         <!-- Register Section -->
