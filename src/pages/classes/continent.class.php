@@ -50,9 +50,9 @@
                 'Oceania' => 'Oceania-Map.png'
             ];
             
-            foreach ($continents as $continent => $image) {
-                
+            foreach ($continents as $continent => $image) {                
                 echo '<a class="w-[30%] h-[40%] my-6 ' . $this->RECHCONTINENT($continent) . '" href="index.php?FiltreP=' . urlencode($continent) . '#container">
+
                             <img class="w-full h-full" src="assets/images/' . $image . '" alt="Map ' . $continent . '">
                         </a>';
             }

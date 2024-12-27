@@ -1,3 +1,16 @@
+<?php
+    spl_autoload_register(function($class){
+        require "../classes/". $class . ".class.php";
+    });
+
+    
+    $user = new user();
+    session_start();
+    $user->Authentification(false, true, true);
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,22 +41,22 @@
             </div>
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                 <p class="text-center text-3xl">Join Us.</p>
-                <form class="flex flex-col pt-3 md:pt-8" action="">
+                <form class="flex flex-col pt-3 md:pt-8" action="./proccessors/auth.php" method="POST">
                     <div class="flex flex-col pt-4">
                         <label for="name" class="text-lg">Name</label>
-                        <input type="text" id="nameInput" placeholder="John Smith" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                        <input type="text" id="nameInput" name="username" placeholder="John Smith" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                         <span class="hidden text-red-500">name Incorrect</span>
                     </div>
 
                     <div class="flex flex-col pt-4">
                         <label for="email" class="text-lg">Email</label>
-                        <input type="email" id="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                        <input type="email" id="email" name="emailInscr" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                         <span class="hidden text-red-500">email Incorrect</span>
                     </div>
     
                     <div class="flex flex-col pt-4">
                         <label for="password" class="text-lg">Password</label>
-                        <input type="password" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                        <input type="password" id="password" name="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                         <span class="hidden text-red-500">password Incorrect</span>
                     </div>
 
@@ -53,7 +66,7 @@
                         <span class="hidden text-red-500">password Incorrect</span>
                     </div>
     
-                    <input type="submit" value="Register" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
+                    <input type="submit" name="submitForm" value="Register" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
                 </form>
                 <div class="text-center pt-12 pb-12">
                     <p>Already have an account? <a href="login.php" class="underline font-semibold">Log in here.</a></p>

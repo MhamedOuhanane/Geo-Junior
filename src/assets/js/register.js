@@ -55,6 +55,6 @@ document.querySelector("form").addEventListener("submit",function(event){
     event.preventDefault();
 
     if(inputValidation(email,emailRegex) && inputValidation(password,passRegex) && inputValidation(nameInput,nameRegex) && passwordConfirmInputValidation()){
-        this.submit();
+        document.querySelector("form").submit();
     }
 })

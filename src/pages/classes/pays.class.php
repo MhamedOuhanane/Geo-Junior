@@ -12,9 +12,8 @@
 
         // fonction de rechercher le src du pays
         public function FILTRENAME($namepays){
-            $realpath = realpath(__DIR__."/../pages");
-            var_dump($realpath);
-            $JsonPays = file_get_contents("$realpath/assets/data/Pays.json");
+
+            $JsonPays = file_get_contents('./assets/data/Pays.json');
             $JsonPays = json_decode($JsonPays, true);
             foreach($JsonPays as $Element){
                 if ($Element['name'] == $namepays) {
