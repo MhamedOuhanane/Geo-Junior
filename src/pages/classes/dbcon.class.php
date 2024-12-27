@@ -39,8 +39,8 @@
             return $this->data;
         }
         
-        public function Insert($tableName, $values){
-            switch ($tableName) {
+        public function Insert($table, $values){
+            switch ($table) {
                 case 'continent':
                     $this->sql = "INSERT INTO continent(name) VALUES (";
                     break;
@@ -74,13 +74,19 @@
             }
             $this->sql .= ");";
 
-            $this->data = self::connect()->query($this->sql);      
-
-
+            $this->data = self::connect()->query($this->sql);
         }
-
-
-
+        public function deleteWhere($table,$columnName,$value,$valueType){
+            $this->sql = "DELETE * FROM $table WHERE $columnName = ";
+            if($valueType == "int"){
+                $this->sql .= $value;
+            }else if($valueType == 'string'){
+                $this->sql .= "'".$value."'";
+            }
+            $this->data = self::connect()->query($this->sql);
+        }
+        
+        
 
     }
 ?>
