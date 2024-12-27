@@ -78,7 +78,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-end gap-4">
                             <a href="adminDashboard.php?id_continent='.$this->id_continent.'" class="text-green-600 hover:text-indigo-900">View</a>
-                            <a href="formPages/editContinentForm.php?id_continent='.$this->id_continent.'" class="text-blue-600 hover:text-indigo-900">Edit</a>
+                            <a href="./formPages/editContinentForm.php?id_continent='.$this->id_continent.'" class="text-blue-600 hover:text-indigo-900">Edit</a>
                             <a href="delete.php?id_country='.'" class="text-red-500 hover:text-indigo-900">delete</a>
                         </td>
                     </tr>';
