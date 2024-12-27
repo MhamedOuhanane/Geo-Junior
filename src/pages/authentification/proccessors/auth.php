@@ -13,6 +13,6 @@
     } else if (isset($_POST['emailConnex'])) {
         $user->setUser("", $_POST['emailConnex'], $_POST['password'], "");
         $user->connexion();
-    }
+    } 
 
 ?>

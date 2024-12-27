@@ -2,20 +2,31 @@
 
 spl_autoload_register(function($class){ require "pages/classes/". $class . ".class.php"; });
 
-class roles{
+class role{
     protected $id_role;
     protected $nameRole;
 
-    public function Authentification(){
-        if (isset($_SESSION)) {
+    public function Authentification($condition, $conditionUser,$conditionAdmine){
+        $realpath = realpath(__DIR__.'/../src');
+        if (!empty($_SESSION)) {
+            
             $this->nameRole = $_SESSION['role'];
             if ($this->nameRole == 'User') {
-                header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src');
+                if ($conditionUser) {
+                    header("Location: $realpath/Geo-Junior/src");
+                    exit;
+                }
             } else if ($this->nameRole == 'Admine') {
-                header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/adminPages/adminDashboard.php');
+                if ($conditionAdmine) {
+                    header("Location: $realpath/Geo-Junior/src/pages/adminPages/adminDashboard.php");
+                    exit;
+                }
             }
         } else {
-            header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/authentification.login.php');
+            if ($condition) {
+                header("Location: $realpath/Geo-Junior/src/pages/authentification/login.php");
+                exit;
+            }
         }
     }
 

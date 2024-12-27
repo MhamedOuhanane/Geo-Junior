@@ -4,7 +4,7 @@
     spl_autoload_register(function($class){ require "pages/classes/". $class . ".class.php"; });
     
 
-    class user extends roles{
+    class user extends role{
         private $id_user;
         private $username;
         private $email;
@@ -48,7 +48,7 @@
                     $this->id_role = $users['id_role'];
                     $_SESSION['id_user'] = $this->id_user;
                     $_SESSION['role'] = $this->userRole();
-                    $this->Authentification(true, true);
+                    $this->Authentification(true, true, true);
                 } else {
                     $erreur = 'Le mot de pas est inccorect . ';
                     header("Location: $realpath/Geo-Junior/src/pages/authentification/login.php?erreur=$erreur");

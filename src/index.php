@@ -6,7 +6,7 @@
 
     $user = new user();
     session_start();
-    $user->Authentification(true, false);
+    $user->Authentification(true, false, true);
 
 ?>
 
@@ -27,7 +27,7 @@
         <a href="#" class="text-3xl font-bold">GEO JUNIOR</a>
       </div>
       <div class="items-center hidden gap-8 md:flex">
-        <a class="flex items-center px-4 py-2 text-sm font-bold rounded-xl bg-purple-100 text-gray-800 hover:bg-black hover:text-white transition duration-300 cursor-pointer" href="#">Log out</a>
+        <a class="flex items-center px-4 py-2 text-sm font-bold rounded-xl bg-purple-100 text-gray-800 hover:bg-black hover:text-white transition duration-300 cursor-pointer" href="pages/authentification/proccessors/logout.php?logout">Log out</a>
         
       </div>
       <button onclick="(() => { this.closest('.group').classList.toggle('open')})()" class="flex md:hidden">

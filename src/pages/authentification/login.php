@@ -6,7 +6,7 @@
     
     $user = new user();
     session_start();
-    $user->Authentification(false, true);
+    $user->Authentification(false, true, true);
 
     
 ?>
