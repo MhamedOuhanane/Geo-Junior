@@ -1,5 +1,7 @@
 <?php
 
+use function PHPSTORM_META\type;
+
     spl_autoload_register(function($class){ require "pages/classes/". $class . ".class.php"; });
     
 
@@ -45,8 +47,24 @@
                 $erreur = 'Cette Compts n\'existe pas .';
                 header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/authentification.login.php?erreur='.$erreur);
             }
+        }
+
+        public function inscription($username, $email, $password){
+            $dbcon = new dbcon();
+            $users = $dbcon->selectWhere('user', 'Email', $email, 'string');
+            if ($users != NULL) {
+                $password = password_hash($password, PASSWORD_BCRYPT);
+                $urilisa = [['val'=>$username, 'type'=>'string'], ['val'=>$email, 'type'=> 'string'], ['val'=>$password, 'type'=> 'string']];
+                $rqt =$dbcon->Insert('user', $urilisa);
+                $message = "Le compts a ete crée avec succés.";
+                header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/authentification.login.php?erreur='.$message);
+            } else {
+                $erreur = "Ce compts est déjat éxicte .";
+                header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/authentification.register.php?erreur='.$erreur);
+            }
 
         }
+
 
     }
 ?>

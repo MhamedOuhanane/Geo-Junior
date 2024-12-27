@@ -1,3 +1,17 @@
+<?php
+    spl_autoload_register(function($class){
+        require "pages/classes/". $class . ".class.php";
+    });
+
+    
+    $user = new user();
+
+    if (isset($_POST['submit'])) {
+        $user->inscription($_POST['username'], $_POST['emal'], $_POST['password']);
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,19 +45,19 @@
                 <form class="flex flex-col pt-3 md:pt-8" action="">
                     <div class="flex flex-col pt-4">
                         <label for="name" class="text-lg">Name</label>
-                        <input type="text" id="nameInput" placeholder="John Smith" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                        <input type="text" id="nameInput" name="username" placeholder="John Smith" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                         <span class="hidden text-red-500">name Incorrect</span>
                     </div>
 
                     <div class="flex flex-col pt-4">
                         <label for="email" class="text-lg">Email</label>
-                        <input type="email" id="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                        <input type="email" id="email" name="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                         <span class="hidden text-red-500">email Incorrect</span>
                     </div>
     
                     <div class="flex flex-col pt-4">
                         <label for="password" class="text-lg">Password</label>
-                        <input type="password" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                        <input type="password" id="password" name="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                         <span class="hidden text-red-500">password Incorrect</span>
                     </div>
 
