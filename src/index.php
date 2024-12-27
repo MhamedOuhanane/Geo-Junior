@@ -2,7 +2,7 @@
 
     spl_autoload_register(function($class){
         require "pages/classes/". $class . ".class.php";
-    })
+    });
 
 ?>
 
