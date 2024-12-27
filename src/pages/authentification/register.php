@@ -1,16 +1,16 @@
 <?php
     spl_autoload_register(function($class){
-        require "pages/classes/". $class . ".class.php";
+        require "../classes/". $class . ".class.php";
     });
 
     
     $user = new user();
 
-    if (isset($_POST['submit'])) {
-        $user->inscription($_POST['username'], $_POST['emal'], $_POST['password']);
-
+    if (isset($_POST['email'])) {
+        $user->setUser($_POST['username'], $_POST['email'], $_POST['password'], 'User');
+        $user->inscription();
     }
-?>
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +42,7 @@
             </div>
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                 <p class="text-center text-3xl">Join Us.</p>
-                <form class="flex flex-col pt-3 md:pt-8" action="">
+                <form class="flex flex-col pt-3 md:pt-8" action="register.php" method="POST">
                     <div class="flex flex-col pt-4">
                         <label for="name" class="text-lg">Name</label>
                         <input type="text" id="nameInput" name="username" placeholder="John Smith" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
@@ -67,7 +67,7 @@
                         <span class="hidden text-red-500">password Incorrect</span>
                     </div>
     
-                    <input type="submit" value="Register" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
+                    <input type="submit" name="submitForm" value="Register" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
                 </form>
                 <div class="text-center pt-12 pb-12">
                     <p>Already have an account? <a href="login.php" class="underline font-semibold">Log in here.</a></p>

@@ -4,6 +4,10 @@
         require "pages/classes/". $class . ".class.php";
     });
 
+    $user = new user();
+
+    // $user->Authentification();
+
 ?>
 
 <!DOCTYPE html>

@@ -24,7 +24,7 @@
             $this->nombrePays = count($pays);
 
             if ($pays == NULL) {
-                echo 'pointer-events-none';
+                return 'pointer-events-none';
             } else {
                 
                 if ($this->nombrePays == 0) {

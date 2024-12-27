@@ -37,11 +37,12 @@
                 $this->sql .= "'".$value."'";
             }
             $this->data = self::connect()->query($this->sql);
-            $this->data = $this->data->fetchAll(PDO::FETCH_ASSOC);
+            $this->data = $this->data->fetch(PDO::FETCH_ASSOC);
             return $this->data;
         }
 
         public function Insert($tableName, $values){
+
             switch ($tableName) {
                 case 'continent':
                     $this->sql = "INSERT INTO continent(name) VALUES (";
@@ -55,6 +56,10 @@
                     $this->sql = "INSERT INTO ville(nom, description, type, id_pays) VALUES (";
                     break;
 
+                case 'user':
+                    $this->sql = "INSERT INTO user(Username, Email, Password, id_role) VALUES (";
+                    break;
+
                 default:
                     return 0;
                     break;
@@ -64,6 +69,7 @@
 
                 if ($value['type'] == 'int' ) {
                     
+
                     $this->sql .= $value['val'];
                 } else if ($value['type'] == 'string') {
                     $this->sql .= "'" . $value['val'] . "'";
@@ -76,7 +82,10 @@
             }
             $this->sql .= ");";
 
-            $this->data = self::connect()->query($this->sql);      
+            if (self::connect()->query($this->sql)){
+                return 1;
+            }else return 0;
+            
 
 
         }

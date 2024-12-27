@@ -1,16 +1,13 @@
 <?php
     spl_autoload_register(function($class){
-        require "pages/classes/". $class . ".class.php";
+        require "../classes/". $class . ".class.php";
     });
 
     
     $user = new user();
 
     if (isset($_POST['submit'])) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        $user->setUser($email, $password);
+        $user->setUser("", $_POST['email'], $_POST['password'], "");
         var_dump($user->getUser());
 
     }
