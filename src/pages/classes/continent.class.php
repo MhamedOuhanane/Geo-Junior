@@ -24,7 +24,7 @@
             $this->nombrePays = count($pays);
 
             if ($pays == NULL) {
-                echo 'pointer-events-none';
+                return 'pointer-events-none';
             } else {
                 
                 if ($this->nombrePays == 0) {
@@ -50,7 +50,7 @@
             ];
             
             foreach ($continents as $continent => $image) {
-                echo '<a class="w-[34%] h-[40%] ' . $this->RECHCONTINENT($continent) . '" href="index.php?FiltreP=' . urlencode($continent) . '#container">
+                echo '<a class="w-[26%] h-[35%] my-6 ' . $this->RECHCONTINENT($continent) . '" href="index.php?FiltreP=' . urlencode($continent) . '#container">
                             <img class="w-full h-full" src="assets/images/' . $image . '" alt="Map ' . $continent . '">
                         </a>';
             }

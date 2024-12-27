@@ -2,7 +2,11 @@
 
     spl_autoload_register(function($class){
         require "pages/classes/". $class . ".class.php";
-    })
+    });
+
+    $user = new user();
+    session_start();
+    $user->Authentification(true, false, true);
 
 ?>
 
@@ -23,7 +27,7 @@
         <a href="#" class="text-3xl font-bold">GEO JUNIOR</a>
       </div>
       <div class="items-center hidden gap-8 md:flex">
-        <a class="flex items-center px-4 py-2 text-sm font-bold rounded-xl bg-purple-100 text-gray-800 hover:bg-black hover:text-white transition duration-300 cursor-pointer" href="#">Log out</a>
+        <a class="flex items-center px-4 py-2 text-sm font-bold rounded-xl bg-purple-100 text-gray-800 hover:bg-black hover:text-white transition duration-300 cursor-pointer" href="pages/authentification/proccessors/logout.php?logout">Log out</a>
         
       </div>
       <button onclick="(() => { this.closest('.group').classList.toggle('open')})()" class="flex md:hidden">
@@ -48,6 +52,9 @@
         </p>
         <div class="flex flex-col items-center gap-4 lg:flex-row">
           <a class="flex items-center py-4 text-sm font-bold text-white px-7 bg-blue-500 hover:bg-black focus:ring-4 focus:ring-blue-100 transition duration-300 rounded-xl" href="#container">Get started now</a>
+          <?php if (!empty($_GET)) { ?>
+            <a class="flex items-center py-4 text-sm font-bold text-white px-7 bg-blue-500 hover:bg-black focus:ring-4 focus:ring-blue-100 transition duration-300 rounded-xl" href="<?= $_SERVER['HTTP_REFERER'] ?>#container">Go back</a>
+          <?php } ?>
         </div>
       </div>
       <div class="items-center justify-end hidden col-span-1 md:flex">
@@ -80,7 +87,6 @@
               $pays->nom = $contry['nom'];
               $pays->population = $contry['population'];
               $pays->langues = $contry['langues'];
-              $pays->id_continent = $contry['id_continent'];
 
               $pays->AfficherUser();
 
