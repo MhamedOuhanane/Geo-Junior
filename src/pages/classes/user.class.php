@@ -66,14 +66,12 @@
             $users = $dbcon->selectWhere('user', 'Email', $this->email, 'string');
             if ($users == NULL) {
                 $password = password_hash($this->password, PASSWORD_BCRYPT);
-                $utilisateur = ['Username' => ['val'=>$this->username, 'type'=>'string'], 'Email' => ['val'=>$this->email, 'type'=> 'string'], 'Password' => ['val'=>$password, 'type'=> 'string'], 'id_role' => ['val'=>$this->id_role, 'type'=>'int']];
+                $utilisateur = ['Username' =>$this->username, 'Email' =>$this->email, 'Password' =>$password, 'id_role' =>$this->id_role ];            
                 
-                
-                if ($dbcon->Insert('user', $utilisateur)) {
+                $dbcon->Insert('user', $utilisateur).
                     $message = "Le compts a ete crée avec succés.";
                     header('Location: ../login.php?message='.$message);
                     exit;
-                }
                 
             } else {
                 $erreur = "Ce compts est déjat éxicte .";
