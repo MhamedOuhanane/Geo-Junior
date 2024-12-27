@@ -15,7 +15,7 @@
             
             if ($dbcon->selectWhere('continent', 'name', $name, 'string') != NULL){
                 $conti = $dbcon->selectWhere('continent', 'name', $name, 'string');
-                $this->id_continent = $conti[0]['id_continent'];
+                $this->id_continent = $conti['id_continent'];
             } else {
                 $this->id_continent = 0;
             }

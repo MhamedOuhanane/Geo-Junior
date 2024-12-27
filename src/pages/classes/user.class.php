@@ -51,11 +51,11 @@
                     $this->Authentification();
                 } else {
                     $erreur = 'Le mot de pas est inccorect . ';
-                    header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/authentification/login.php?erreur='.$erreur);
+                    header('Location: ../../login.php?erreur='.$erreur);
                 }
             } else {
                 $erreur = 'Cette Compts n\'existe pas .';
-                header('Location: C:/Users/ycode/Desktop/Briefs/Geo-Junior/src/pages/authentification/login.php?erreur='.$erreur);
+                header('Location: ../../login.php?erreur='.$erreur);
             }
         }
 

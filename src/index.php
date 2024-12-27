@@ -6,7 +6,7 @@
 
     $user = new user();
 
-    // $user->Authentification();
+    $user->Authentification(true);
 
 ?>
 

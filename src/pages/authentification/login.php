@@ -5,12 +5,9 @@
 
     
     $user = new user();
+    $user->Authentification(false);
 
-    if (isset($_POST['submit'])) {
-        $user->setUser("", $_POST['email'], $_POST['password'], "");
-        var_dump($user->getUser());
-
-    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +42,7 @@
                 <form class="flex flex-col pt-3 md:pt-8" action="login.php" method="POST">
                     <div class="flex flex-col pt-4">
                         <label for="email" class="text-lg">Email</label>
-                        <input type="email" name="email" id="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="email" name="emailConnex" id="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                         <span class="hidden text-red-500">email Incorrect</span>
                     </div>
     
@@ -55,7 +52,7 @@
                         <span class="hidden text-red-500">password Incorrect</span>
                     </div>
     
-                    <input type="submit" name="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                    <input type="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                 </form>
                 <div class="text-center pt-12 pb-12">
                     <p>Don't have an account? <a href="register.php" class="underline font-semibold">Register here.</a></p>
