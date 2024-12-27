@@ -51,7 +51,8 @@
             $this->sql = "INSERT INTO $table($columns) VALUES($placeholders)";
             $this->data = self::connect()->prepare($this->sql);
             foreach($values as $key=>$value){
-                $this->data->bindValue(":".$key,$value['val']);
+                $type = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+                $this->data->bindValue(":" . $key, $value, $type);
             }
             $this->data->execute();
         }

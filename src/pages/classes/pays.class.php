@@ -1,5 +1,5 @@
 <?php
-
+    
 
     spl_autoload_register(function($class){
         require "pages/classes/". $class . ".class.php";
@@ -12,6 +12,7 @@
 
         // fonction de rechercher le src du pays
         public function FILTRENAME($namepays){
+
             $JsonPays = file_get_contents('./assets/data/Pays.json');
             $JsonPays = json_decode($JsonPays, true);
             foreach($JsonPays as $Element){
@@ -53,6 +54,37 @@
                             </div>
                         </div>
                     </a>';
+        }
+        public function afficherAdmin(){
+                echo '<tr>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <div class="flex items-center justify-center">
+                                <div class="ml-4 ">
+                                    <div class="text-sm leading-5 font-medium text-gray-900 text-center">'.$this->nom.'</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <div class="flex items-center justify-center">
+                                <div class="ml-4 ">
+                                    <div class="text-sm leading-5 font-medium text-gray-900 text-center">'.$this->population.'</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <div class="flex items-center justify-center">
+                                <div class="ml-4 ">
+                                    <div class="text-sm leading-5 font-medium text-gray-900 text-center">'.$this->langues.'</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-between">
+                            <a href="?id_pays='.$this->id_pays.'" class="text-green-600 hover:text-indigo-900">View</a>
+                            <a href="formPages/editCountryForm.php?id_country='.$this->id_pays.'" class="text-blue-600 hover:text-indigo-900">Edit</a>
+                            <a href="delete.php?id_country='.'" class="text-red-500 hover:text-indigo-900">delete</a>
+                        </td>
+                    </tr>';
+            
         }
 
     }

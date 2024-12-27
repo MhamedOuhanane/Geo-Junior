@@ -13,13 +13,6 @@
         <input type="text" placeholder="name" class="px-4 py-3 bg-gray-100 w-full text-sm outline-none border-b-2 border-blue-500 rounded" name="nom" required/>
         <input type="text" placeholder="population" class="px-4 py-3 bg-gray-100 w-full text-sm outline-none border-b-2 border-blue-500 rounded" name="population" required/>
         <input type="text" placeholder="languages" class="px-4 py-3 bg-gray-100 w-full text-sm outline-none border-b-2 border-blue-500 rounded" name="langues" required/>
-        <div class="flex justify-between">
-            <label for="continents">Choose a continent:</label>
-            <select id="continents" name="id_continent" class="text-center w-1/3">
-                <option value="1">Africa</option>
-                <option value="2">America</option>
-            </select>
-        </div>
         <button type="submit" class="!mt-8 w-full px-4 py-2.5 mx-auto block text-sm bg-blue-500 text-white rounded hover:bg-blue-600">Submit</button>
     </form>
 </body>
