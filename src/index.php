@@ -63,7 +63,7 @@
 
           $continents = new continent();
           $continents->AfficherUser();
-
+          
         } else if (isset($_GET['FiltreP'])) {
 
           $pays = new pays();

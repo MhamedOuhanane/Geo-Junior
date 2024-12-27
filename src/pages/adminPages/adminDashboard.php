@@ -69,15 +69,88 @@
         </div>
     </div>
     <?php 
-    if(!isset($_GET["id_pays"]) && !isset($_GET["id_ville"]) && !isset($_GET["id_ville"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Continents</span>';
-    else if(isset($_GET["id_continent"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Pays</span>';
+    if(isset($_GET["id_continent"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Pays</span>';
     else if(isset($_GET["id_pays"])) echo '<span class="font-bold text-3xl mx-5 mt-4">Villes</span>';
+    else echo '<span class="font-bold text-3xl mx-5 mt-4">Continents</span>';
+     
+    spl_autoload_register(function($class){
+      require "../classes/". $class . ".class.php";
+    });
+     $dbcon = new dbcon();
+
     ?>
-    
 
+    <div class="flex flex-col mt-8">
+    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <table class="w-full">
+              
+            <?php
+            
+            if(isset($_GET["id_continent"])){
+              echo'<thead>
+                    <tr class="bg-gray-100 ">
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">Name</th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">population</th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">langues</th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-2xl text-end"><a href="formPages/addCountryForm.php">+</a></th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-white">';
+              $data = $dbcon->selectWhere("pays","id_continent",$_GET["id_continent"],"int");
+              foreach($data as $el){
+                $pays = new pays();
+                $pays->id_pays = $el["id_pays"];
+                $pays->nom = $el["nom"];
+                $pays->population = $el["population"];
+                $pays->langues = $el["langues"];
+                $pays->afficherAdmin();
+              }
+              
+            }else if(isset($_GET["id_pays"])){
+                  echo'<thead>
+                  <tr class="bg-gray-100 ">
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">type</th>
+                      <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-2xl text-end"><a href="formPages/addcityForm.php">+</a></th>
+                  </tr>
+                  </thead>
+                  <tbody class="bg-white">';
+                  $data = $dbcon->selectWhere("ville","id_pays",$_GET["id_pays"],"int");
+                  foreach($data as $el){
+                    $pays = new ville();
+                    $pays->id_ville = $el["id_ville"];
+                    $pays->nom = $el["nom"];
+                    $pays->description = $el["description"];
+                    $pays->type = $el["type"];
+                    $pays->afficherAdmin();
+                  }
 
-
-
+            }else{
+                    echo'<thead>
+                    <tr class="bg-gray-100 ">
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">Name</th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">nb of countries</th>
+                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-2xl text-end"><a href="formPages/addContinentForm.php">+</a></th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-white">';
+                    $data = $dbcon->selectAll("continent");
+                    foreach($data as $el){
+                      $continent = new continent();
+                      $continent->id_continent = $el["id_continent"];
+                      $continent->nom = $el["name"];
+                      $count = $dbcon->selectWhere("pays","id_continent",$el["id_continent"],"int");
+                      $continent->nombrePays = count($count);
+                      $continent->afficherAdmin();
+                    }
+                    echo "</tbody>";
+                }
+            ?>
+            </table>
+        </div>
+    </div>
+    </div>
 
 </div>
 

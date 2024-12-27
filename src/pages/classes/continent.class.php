@@ -21,10 +21,11 @@
             }
 
             $pays = $dbcon->selectWhere('pays', 'id_continent', $this->id_continent, 'int');
+            
             $this->nombrePays = count($pays);
 
             if ($pays == NULL) {
-                echo 'pointer-events-none';
+                return 'pointer-events-none';
             } else {
                 
                 if ($this->nombrePays == 0) {
@@ -50,13 +51,42 @@
             ];
             
             foreach ($continents as $continent => $image) {
-                echo '<a class="w-[34%] h-[40%] ' . $this->RECHCONTINENT($continent) . '" href="index.php?FiltreP=' . urlencode($continent) . '#container">
+                
+                echo '<a class="w-[30%] h-[40%] my-6 ' . $this->RECHCONTINENT($continent) . '" href="index.php?FiltreP=' . urlencode($continent) . '#container">
                             <img class="w-full h-full" src="assets/images/' . $image . '" alt="Map ' . $continent . '">
                         </a>';
             }
             
             echo '</div>';
         }
+
+        public function afficherAdmin(){
+                echo '<tr>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <div class="flex items-center justify-center">
+                                <div class="ml-4 ">
+                                    <div class="text-sm leading-5 font-medium text-gray-900 text-center">'.$this->nom.'</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <div class="flex items-center justify-center">
+                                <div class="ml-4 ">
+                                    <div class="text-sm leading-5 font-medium text-gray-900 text-center">'.$this->nombrePays.'</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium flex justify-end gap-4">
+                            <a href="adminDashboard.php?id_continent='.$this->id_continent.'" class="text-green-600 hover:text-indigo-900">View</a>
+                            <a href="formPages/editContinentForm.php?id_continent='.$this->id_continent.'" class="text-blue-600 hover:text-indigo-900">Edit</a>
+                            <a href="delete.php?id_country='.'" class="text-red-500 hover:text-indigo-900">delete</a>
+                        </td>
+                    </tr>';
+            
+            
+
+        }
+
     } 
     
 
