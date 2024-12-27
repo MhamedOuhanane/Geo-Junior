@@ -7,8 +7,20 @@
 
 
     if(str_contains($_SERVER["HTTP_REFERER"],"editCountryForm.php?id_country")){
-        $values = [["column" => "nom", "val" => $_POST["nom"], "type" => "string"],["column"=>"population","val"=>$_POST["population"],"type"=>"int"],["column"=>"langues","val"=>$_POST["langues"],"type"=>"string"]];
+        $values = ["nom"=> $_POST["nom"],"population"=>$_POST["population"],"langues"=>$_POST["langues"]];
         $dbcon->Update("pays",$values,"id_pays",$_POST["id"],"int");
+        header("location: ../adminDashboard.php");
+        exit;
+    }else if(str_contains($_SERVER["HTTP_REFERER"],"editCityForm.php?id_ville=")){
+        $values = ["nom" => $_POST["nom"],"description" => $_POST["description"],"type" => $_POST["type"]];
+        $dbcon->Update("ville",$values,"id_ville",$_POST["id"],"int");
+
+        header("location: ../adminDashboard.php");
+        exit;
+    }else if(str_contains($_SERVER["HTTP_REFERER"],"editContinentForm.php?id_continent=")){
+        $values = ["name" => $_POST["name"]];
+        $dbcon->Update("continent",$values,"id_continent",$_POST["id"],"int");
+
         header("location: ../adminDashboard.php");
         exit;
     }
