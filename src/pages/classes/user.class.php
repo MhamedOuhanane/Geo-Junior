@@ -66,7 +66,7 @@
             $users = $dbcon->selectWhere('user', 'Email', $this->email, 'string');
             if ($users == NULL) {
                 $password = password_hash($this->password, PASSWORD_BCRYPT);
-                $utilisateur = [['val'=>$this->username, 'type'=>'string'], ['val'=>$this->email, 'type'=> 'string'], ['val'=>$password, 'type'=> 'string'], ['val'=>$this->id_role, 'type'=>'int']];
+                $utilisateur = ['Username' => ['val'=>$this->username, 'type'=>'string'], 'Email' => ['val'=>$this->email, 'type'=> 'string'], 'Password' => ['val'=>$password, 'type'=> 'string'], 'id_role' => ['val'=>$this->id_role, 'type'=>'int']];
                 
                 
                 if ($dbcon->Insert('user', $utilisateur)) {
